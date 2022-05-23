@@ -20,6 +20,11 @@ namespace LibraryManagementSystem
            // adminstrator.ReturnBook();  
            Authentication authentication = new Authentication();
             authentication.loginAs();
+            //string datee = "12-05-2005";
+            //string date1 = "12-20-2005";
+            //DateTime maindate = DateTime.Parse(datee);
+            //DateTime maindate1 = DateTime.Parse(date1);
+            //Console.WriteLine(maindate1.Day-maindate.Day);
 
                 
             Console.ReadKey();

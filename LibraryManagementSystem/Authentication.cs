@@ -77,6 +77,7 @@ namespace LibraryManagementSystem
 
                 case 2:
                     User user1 = new User();
+                    mains:
                     Console.WriteLine("Enter User Id: ");
                     int userid2 = Convert.ToInt32(Console.ReadLine());
 
@@ -105,8 +106,14 @@ namespace LibraryManagementSystem
 
 
                     }
+                    else
+                    {
+                        Console.WriteLine("User Doesn't Exists");
+                        Console.WriteLine("Try Again");
+                        goto mains;
+                    }
 
-                        break;
+                    break;
                 case 3:
                     Environment.Exit(0);
                     break;
@@ -156,7 +163,7 @@ namespace LibraryManagementSystem
             
             
             
-            return true;
+            return status;
         }
     }
 }

@@ -178,8 +178,10 @@ namespace LibraryManagementSystem
             Console.Write("          Enter The Book Quantity");
             int Quantity = Convert.ToInt32(Console.ReadLine());
             int avilable = Quantity;
+            Console.WriteLine("Enter the Fee Base On /Day...");
+            int fees = Convert.ToInt32(Console.ReadLine());
 
-            Addbook.Write(id+","+bookname+","+BookAuthorName+","+publishdate+","+Quantity+","+avilable+"\n");
+            Addbook.Write(id+","+bookname+","+BookAuthorName+","+publishdate+","+Quantity+","+avilable+","+fees+"\n");
             Console.WriteLine("Book Added SuccessFully ...");
             Addbook.Dispose();
             Addbook.Close();
@@ -195,7 +197,7 @@ namespace LibraryManagementSystem
         {
             FileStream ReadAllBook = new FileStream(@"D:\aspdotnet\CSharpOPPsRepo\LibraryManagementSystem\book.txt.txt", FileMode.Open, FileAccess.Read);
             StreamReader Reading = new StreamReader(ReadAllBook);
-            Console.WriteLine("Book ID " + "\t|" + "Book Name" + "\t|" + "Book Author" + "\t|" + "Publish Date" + "\t|" + "Quantity"+"\t|"+"Availabile");
+            Console.WriteLine("Book ID " + "\t|" + "Book Name" + "\t|" + "Book Author" + "\t|" + "Publish Date" + "\t|" + "Quantity"+"\t|"+"Availabile"+"\t"+"Fee Rs/day");
             while(Reading.Peek() > 0)
             {
                string line = Reading.ReadLine();  
@@ -206,7 +208,7 @@ namespace LibraryManagementSystem
                     Console.WriteLine();
 
                        
-                    Console.WriteLine(data[0]+"\t\t "+data[1]+"\t\t "+data[2]+"\t\t "+data[3]+"\t\t "+data[4]+"\t\t "+data[5]);
+                    Console.WriteLine(data[0]+"\t\t"+data[1]+"\t\t"+data[2]+"\t\t"+data[3]+"\t\t"+data[4]+"\t\t"+data[5]+"\t\t"+data[6]);
                 }
                 else
                 {
@@ -413,6 +415,32 @@ namespace LibraryManagementSystem
                 goto upper;
             }
 
+
+        }
+        public void BorrowesDetails(int borrowid)
+        {
+
+        }
+        public int ReturnFee(int bookid)
+        {
+            int ret = 1;
+            FileStream Readfee = new FileStream(@"D:\aspdotnet\CSharpOPPsRepo\LibraryManagementSystem\book.txt.txt", FileMode.Open, FileAccess.Read);
+            StreamReader ReadingFee = new StreamReader(Readfee);
+            while(ReadingFee.Peek() > 0)
+            {
+                string line=ReadingFee.ReadLine();
+                if (line != "")
+                {
+                    string[] lines = line.Split(',');
+                    if(int.Parse(lines[0]) == bookid)
+                    {
+                        ret = Convert.ToInt32(lines[lines.Length - 1]);
+                        break;
+
+                    }
+                }
+            }
+            return ret;
 
         }
 

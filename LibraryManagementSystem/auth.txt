@@ -1,1 +1,2 @@
 1,sanjay singh,admin,jhajhar,bca,2018
+2,rahul singh,student,noida,B.tech,2019
