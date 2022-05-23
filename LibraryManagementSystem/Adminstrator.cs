@@ -10,7 +10,7 @@ namespace LibraryManagementSystem
 {
     public class Adminstrator
     {
-        public Boolean CheckAvilablity(int bookid)
+        private Boolean CheckAvilablity(int bookid)
         {
             Boolean status=false;
             FileStream fs = new FileStream(@"D:\aspdotnet\CSharpOPPsRepo\LibraryManagementSystem\book.txt.txt",FileMode.Open,FileAccess.Read);
@@ -58,7 +58,7 @@ namespace LibraryManagementSystem
 
             return status;
         }
-        public void IncreaseAvilablity(int bookid)
+        private void IncreaseAvilablity(int bookid)
         {
            
             FileStream fs = new FileStream(@"D:\aspdotnet\CSharpOPPsRepo\LibraryManagementSystem\book.txt.txt", FileMode.Open, FileAccess.Read);
@@ -121,19 +121,22 @@ namespace LibraryManagementSystem
 
             for(int i= 0; i < str.Length; i++)
             {
-                string[] deteteline = str[i].Split(',');
-                int changeStringIdToInt=Convert.ToInt32(deteteline[0]);
-                if (changeStringIdToInt == bookid)
+                if (str[i] != "")
                 {
-                    Console.WriteLine(" Book Deleted which is having id {0}",bookid);
+                    string[] deleteline = str[i].Split(',');
+                    int changeStringIdToInt = int.Parse(deleteline[0]);
+                    if (changeStringIdToInt == bookid)
+                    {
+                        Console.WriteLine(" Book Deleted which is having id {0}", bookid);
 
-                }
-                else
-                {
-                    Newfile.Write(str[i]);
+                    }
+                    else
+                    {
+                        Newfile.Write(str[i]);
+                    }
                 }
             }
-            // Newfile.WriteLine("yes i from delete");
+        // Newfile.WriteLine("yes i from delete");
             Newfile.Dispose();
             Oldfile.Dispose();  
             
